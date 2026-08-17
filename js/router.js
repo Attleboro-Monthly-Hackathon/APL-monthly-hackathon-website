@@ -1,5 +1,5 @@
 import { setMetaDescription, setPageTitle } from "./assets.js";
-import { siteConfig } from "./config.js";
+import { applyConfigText, bindConfig } from "./config.js";
 import {
   collections,
   findItem,
@@ -79,18 +79,10 @@ function mainEl() {
   return document.getElementById("main");
 }
 
-function bindConfig(root) {
-  root.querySelectorAll("[data-config]").forEach((el) => {
-    const key = el.getAttribute("data-config");
-    if (key && key in siteConfig) el.textContent = siteConfig[key];
-  });
-}
-
 function renderHome(scrollId) {
   const template = document.getElementById("view-home");
   const main = mainEl();
   main.replaceChildren(template.content.cloneNode(true));
-  bindConfig(main);
   setPageTitle(scrollId === "calendar" ? "Calendar" : null);
   setMetaDescription(HOME_DESCRIPTION);
   return scrollId;
@@ -137,25 +129,27 @@ async function renderDoc(kind, slug) {
   }
 
   const body = await loadFragment(kind, slug);
-  const title = collection.key === "themes" ? `${item.month} · ${item.title}` : item.title;
+  const title =
+    collection.key === "themes" && item.theme ? `${item.title}` : item.title;
   setPageTitle(title);
-  setMetaDescription(item.summary);
+  setMetaDescription(applyConfigText(item.summary));
 
   const eyebrow = itemEyebrow(item, collection);
-  const lede = item.lede || item.summary;
+  const lede = applyConfigText(item.lede || item.summary);
   const banner =
     item.bannerTitle || item.bannerText
       ? `
         <div class="theme-banner">
-          ${item.month ? `<p class="theme-banner__month">${item.month}</p>` : ""}
+          ${item.theme ? `<p class="theme-banner__month">${item.theme}</p>` : ""}
           ${item.bannerTitle ? `<h2>${item.bannerTitle}</h2>` : ""}
           ${item.bannerText ? `<p>${item.bannerText}</p>` : ""}
         </div>
       `
       : "";
 
+  const widthClass = collection.key === "articles" ? "wrap wrap--narrow" : "wrap";
   main.innerHTML = `
-    <article class="wrap wrap--narrow">
+    <article class="${widthClass}">
       <header class="page-hero">
         ${eyebrow ? `<p class="section__eyebrow">${eyebrow}</p>` : ""}
         <h1>${item.title}</h1>
@@ -207,6 +201,8 @@ export async function renderRoute() {
   }
 
   if (gen !== renderGeneration) return;
+
+  bindConfig(main);
 
   document.dispatchEvent(
     new CustomEvent("spa:navigated", { detail: { route: currentRoute(), parsed } })

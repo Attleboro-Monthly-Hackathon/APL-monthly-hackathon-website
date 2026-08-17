@@ -7,7 +7,7 @@ A static vanilla JavaScript single-page site for the monthly community hackathon
 - One HTML document: styles and chrome stay loaded, so navigation has no flash of unstyled content
 - Hash routes inject home, listings, and article bodies into `<main>`
 - Reserved Google Calendar embed
-- Articles, monthly themes, and tutorials
+- Articles, workshop ideas (future sessions), and language tutorials from Hello-World
 
 ## Local development
 
@@ -24,11 +24,12 @@ Routes:
 - `#/` home
 - `#/calendar` home, scrolled to the calendar
 - `#/articles`, `#/themes`, `#/tutorials` listings
-- `#/articles/welcome-to-apl-hackathon` (and similar) article, theme, or tutorial pages
+- `#/themes/games-from-scratch` workshop idea
+- `#/tutorials/html` language tutorial
 
 ## Configuration
 
-Edit `js/config.js` for site name, library location, Google Calendar embed URL, and contact links.
+Edit `js/config.js` for site name, room (`location`), meetup day (`meetupDay` / `schedule`), Google Calendar embed URL, and contact links. Catalog strings can use `{location}`, `{meetupDay}`, and `{schedule}`; HTML can use `data-config="location"` (and the other keys) so copy stays in one place.
 
 Metadata lives in `data/content.json`. Body copy lives in `content/{articles|themes|tutorials}/{slug}.html`.
 

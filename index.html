@@ -29,7 +29,7 @@
         <div class="hero__glow" aria-hidden="true"></div>
         <div class="hero__content">
           <h1 class="hero__brand"><span data-config="name">APL Hackathon</span></h1>
-          <p class="hero__headline">A monthly makers’ afternoon at the Attleboro Public Library</p>
+          <p class="hero__headline">A monthly makers’ night at the Attleboro Public Library</p>
           <p class="hero__support" data-config="tagline">
             Build something small. Learn something new. Meet your neighbors.
           </p>
@@ -52,23 +52,24 @@
               enjoy helping others get unstuck.
             </p>
             <p>
-              We meet in the library’s meeting room, share a theme for inspiration, and
-              spend the day working on personal or group projects. There are no prizes and
-              no pressure to finish — just a friendly place to learn in public.
+              We meet in the library’s <span data-config="location">2nd floor tech lab</span>,
+              optionally pick a workshop idea, and spend the session working on personal or
+              group projects. There are no prizes and no pressure to finish — just a friendly
+              place to learn in public.
             </p>
           </div>
           <dl class="detail-list reveal">
             <div>
               <dt>Where</dt>
               <dd>
+                <span data-config="location">2nd floor tech lab</span><br />
                 <span data-config="library">Attleboro Public Library</span><br />
-                <span data-config="location">Meeting Room</span><br />
                 <span data-config="address">74 North Main Street, Attleboro, MA 02703</span>
               </dd>
             </div>
             <div>
               <dt>When</dt>
-              <dd data-config="schedule">First Saturday of each month, during Saturday hours</dd>
+              <dd data-config="schedule">First Monday of each month, unless otherwise noted</dd>
             </div>
             <div>
               <dt>What to bring</dt>
@@ -98,8 +99,8 @@
             <p class="section__eyebrow">Explore</p>
             <h2 class="section__title" id="explore-title">Read, browse themes, learn</h2>
             <p class="section__lead">
-              New here? Start with a short article or a beginner tutorial. Returning?
-              Check this month’s theme for inspiration.
+              New here? Start with HTML or Git. Returning? Pick a workshop idea
+              for the next <span data-config="meetupDay">Monday</span>.
             </p>
           </div>
           <div class="preview-grid">
@@ -109,13 +110,13 @@
               <a class="btn btn--outline" href="#/articles">Browse articles</a>
             </div>
             <div class="preview-block reveal">
-              <h3>Monthly themes</h3>
-              <p>Optional prompts to spark projects — never required.</p>
-              <a class="btn btn--outline" href="#/themes">See themes</a>
+              <h3>Workshop ideas</h3>
+              <p>Optional session prompts — games, maps, APIs, library tools.</p>
+              <a class="btn btn--outline" href="#/themes">See sessions</a>
             </div>
             <div class="preview-block reveal">
               <h3>Tutorials</h3>
-              <p>Step-by-step guides for first projects and useful skills.</p>
+              <p>Language landing pages: docs, koans, and Learn X in Y Minutes.</p>
               <a class="btn btn--outline" href="#/tutorials">Start learning</a>
             </div>
           </div>
@@ -127,11 +128,11 @@
           <div class="reveal">
             <p class="section__eyebrow">Latest</p>
             <h2 class="section__title" id="latest-title">From the community</h2>
-            <p class="section__lead">Recent articles and the current theme.</p>
+            <p class="section__lead">Recent articles and workshop ideas from Hello-World.</p>
           </div>
           <content-list class="reveal" kind="articles" limit="3"></content-list>
           <p style="margin-top: 1.5rem">
-            <a class="btn btn--solid" href="#/themes">This month’s theme →</a>
+            <a class="btn btn--solid" href="#/themes">Browse workshop ideas →</a>
           </p>
         </div>
       </section>

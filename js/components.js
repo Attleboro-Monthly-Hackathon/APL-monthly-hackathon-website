@@ -83,7 +83,7 @@ class SiteFooter extends HTMLElement {
             <h2>Explore</h2>
             <ul>
               <li><a href="#/articles">Articles</a></li>
-              <li><a href="#/themes">Monthly themes</a></li>
+              <li><a href="#/themes">Workshop ideas</a></li>
               <li><a href="#/tutorials">Tutorials</a></li>
               <li><a href="#/calendar">Calendar</a></li>
             </ul>

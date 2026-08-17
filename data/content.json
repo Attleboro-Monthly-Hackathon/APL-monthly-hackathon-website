@@ -18,60 +18,163 @@
       "slug": "library-wifi-and-power",
       "title": "Library Wi‑Fi, Power Outlets, and Quiet Corners",
       "date": "2026-06-20",
-      "summary": "A practical guide to working comfortably in the Attleboro Public Library meeting room all afternoon.",
-      "lede": "Settle in for a productive — and comfortable — Saturday."
+      "summary": "A practical guide to working comfortably in the Attleboro Public Library {location}.",
+      "lede": "Settle in for a productive — and comfortable — {meetupDay}."
     }
   ],
   "themes": [
     {
-      "slug": "2026-08",
-      "month": "August 2026",
-      "title": "Maps & Places",
-      "summary": "Build tools that help people find, remember, or explore local places.",
-      "lede": "August 2026 — optional inspiration for your Saturday project.",
-      "bannerTitle": "Build something about where we live",
-      "bannerText": "Neighborhoods, GATRA stops, Capron Park, downtown Attleboro — explore how digital tools can help people notice and navigate place."
+      "slug": "games-from-scratch",
+      "title": "Games from Scratch",
+      "theme": "Logic & UI",
+      "summary": "Recreate a classic game with a small scope, or stretch into Pong, Snake, and arcade clones.",
+      "lede": "Visual feedback and quick demos — pick a light or heavy track and ship something playable.",
+      "bannerTitle": "Logic & UI",
+      "bannerText": "Finish a tiny game in one session, then add stretch features if you have time."
     },
     {
-      "slug": "2026-07",
-      "month": "July 2026",
-      "title": "Everyday Helpers",
-      "summary": "Small apps and scripts that make daily life a little easier.",
-      "lede": "July 2026 — tiny tools with outsized kindness.",
-      "bannerTitle": "Solve one small annoyance",
-      "bannerText": "Timers, checklists, converters, reminders — the best helper apps are humble and useful by lunchtime."
+      "slug": "data-for-good",
+      "title": "Data for Good",
+      "theme": "Local open data",
+      "summary": "Turn public datasets into charts, maps, and civic questions about the places we live.",
+      "lede": "Prefer one dataset and a few focused questions over a sprawling dashboard.",
+      "bannerTitle": "Visualizing local info",
+      "bannerText": "Transit, parks, weather, census — tell a clear story with open data."
     },
     {
-      "slug": "2026-06",
-      "month": "June 2026",
-      "title": "Stories & Sound",
-      "summary": "Interactive stories, audio experiments, and creative writing tools.",
-      "lede": "June 2026 — narrative play and audio experiments.",
-      "bannerTitle": "Make something that tells or listens",
-      "bannerText": "Branching stories, poem generators, ambient soundboards — creativity welcome in every form."
+      "slug": "automate-your-life",
+      "title": "Automate Your Life",
+      "theme": "Scripts",
+      "summary": "Write a short script that does one repetitive job reliably — files, weather, bots, and more.",
+      "lede": "Personal tools, bots, and file chores. Start with a dry-run.",
+      "bannerTitle": "The power of scripts",
+      "bannerText": "Pick one annoying task and automate the happy path first."
+    },
+    {
+      "slug": "interactive-story",
+      "title": "The Interactive Story",
+      "theme": "Creative coding",
+      "summary": "Branching stories, Twine, p5.js, and visual novels — writing and code in the same room.",
+      "lede": "Great for mixed groups: storytellers and programmers can pair up.",
+      "bannerTitle": "Creative coding",
+      "bannerText": "Outline endings first, then wire up choices, inventory, and a little state."
+    },
+    {
+      "slug": "api-mashup",
+      "title": "API Mashup",
+      "theme": "Talking to services",
+      "summary": "Fetch JSON from public APIs, then combine two services into one coherent product.",
+      "lede": "From a joke button to an ISS soundtrack — request, parse, display.",
+      "bannerTitle": "Connecting to the internet",
+      "bannerText": "Get one API working end-to-end before you style or mash anything up."
+    },
+    {
+      "slug": "library-tech",
+      "title": "Library Tech",
+      "theme": "Internal tools",
+      "summary": "Events pages, digital signage, reservations, and catalog companions for library life.",
+      "lede": "Staff-facing and patron-facing prototypes — label demos clearly.",
+      "bannerTitle": "Tools for the library",
+      "bannerText": "Ship something that looks intentional on a phone and a desktop."
+    },
+    {
+      "slug": "creative-pokedex-design",
+      "title": "Creative Pokédex Design",
+      "theme": "UI + fan data",
+      "summary": "Build a Pokédex-style viewer with PokéAPI or original creatures and a strong visual theme.",
+      "lede": "List, detail, search, and type badges — then treat it as a design system.",
+      "bannerTitle": "UI, data, and fan creativity",
+      "bannerText": "Fan / educational / unofficial — credit PokéAPI and prefer original creatures when you can."
+    },
+    {
+      "slug": "trick-or-treat-map",
+      "title": "Trick-or-Treat Map",
+      "theme": "Local maps",
+      "summary": "Find which houses in Attleboro are handing out candy — a neighborhood map for Halloween.",
+      "lede": "Local maps and community data for trick-or-treaters in Attleboro, MA.",
+      "bannerTitle": "Attleboro candy-house map",
+      "bannerText": "Help neighbors find participating houses and plan a walking route."
+    },
+    {
+      "slug": "git-for-beginners",
+      "title": "Git for Beginners",
+      "theme": "Version control",
+      "summary": "First commit, branches, and pull requests — practice on the Hello-World repo.",
+      "lede": "Leave with a working mental model and a real commit on GitHub.",
+      "bannerTitle": "Version control & contributing",
+      "bannerText": "Read git status before every other command. Pair with the Git tutorial page."
     }
   ],
   "tutorials": [
     {
-      "slug": "first-html-page",
-      "title": "Your First HTML Page",
-      "level": "Beginner",
-      "summary": "Create a simple webpage from scratch using only a text editor and a browser.",
-      "lede": "Create a simple webpage using only a text editor and a browser."
+      "slug": "html",
+      "title": "HTML",
+      "level": "Web",
+      "summary": "Headings, links, forms, and semantic structure — the bones of every webpage.",
+      "lede": "Start with MDN and Learn HTML in Y Minutes, then practice with small interactive drills."
     },
     {
-      "slug": "git-in-ten-minutes",
-      "title": "Git in Ten Minutes",
-      "level": "Beginner",
-      "summary": "Save your work, make checkpoints, and share a project without the jargon.",
-      "lede": "Checkpoints for your project — explained without the jargon."
+      "slug": "css",
+      "title": "CSS",
+      "level": "Web",
+      "summary": "Colors, typography, flexbox, grid, and responsive layout for your HTML.",
+      "lede": "Learn by doing: CSS Diner, Flexbox Froggy, and Grid Garden are the community favorites."
     },
     {
-      "slug": "working-with-apis",
-      "title": "Working with Public APIs",
-      "level": "Intermediate",
-      "summary": "Fetch live data from the web and display it on a page.",
-      "lede": "Fetch live data from the web and show it on a page."
+      "slug": "javascript",
+      "title": "JavaScript",
+      "level": "Web",
+      "summary": "The language of interactive pages, APIs, and most workshop demos.",
+      "lede": "Browser and Node scripting — fetch, events, and tiny projects."
+    },
+    {
+      "slug": "python",
+      "title": "Python",
+      "level": "Scripting",
+      "summary": "A readable language for scripting, data work, automation, and teaching.",
+      "lede": "Official tutorial, Automate the Boring Stuff, and Python Koans."
+    },
+    {
+      "slug": "lua",
+      "title": "Lua",
+      "level": "Scripting",
+      "summary": "A small, fast language used in games, mods, Nginx, and other host apps.",
+      "lede": "Try Lua Missions and Programming in Lua after the official getting-started page."
+    },
+    {
+      "slug": "git",
+      "title": "Git",
+      "level": "Tools",
+      "summary": "Install, first commit, and the mental model of commits, branches, and remotes.",
+      "lede": "Complete-beginner resources, plus a live Git for Beginners workshop."
+    },
+    {
+      "slug": "ruby",
+      "title": "Ruby",
+      "level": "Scripting",
+      "summary": "Expressive OOP and the original Ruby Koans path — learn by failing tests.",
+      "lede": "Ruby in Twenty Minutes, Try Ruby in the browser, then koans."
+    },
+    {
+      "slug": "java",
+      "title": "Java",
+      "level": "Systems",
+      "summary": "A widely taught, class-based language that runs on the JVM.",
+      "lede": "Oracle tutorials, Java Koans, and Exercism for drills."
+    },
+    {
+      "slug": "cpp",
+      "title": "C++",
+      "level": "Systems",
+      "summary": "High-performance programming for games, systems, and embedded work.",
+      "lede": "Modern C++ is not “C with classes” — start at isocpp.org and LearnCpp.com."
+    },
+    {
+      "slug": "rust",
+      "title": "Rust",
+      "level": "Systems",
+      "summary": "Speed and memory safety without a garbage collector — rustup, cargo, and The Book.",
+      "lede": "Rustlings is the community koan: fix small exercises until they compile."
     }
   ]
 }

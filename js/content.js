@@ -1,3 +1,5 @@
+import { applyConfigText } from "./config.js";
+
 export const collections = {
   articles: {
     key: "articles",
@@ -10,9 +12,9 @@ export const collections = {
     key: "themes",
     label: "Themes",
     path: "#/themes",
-    backLabel: "All themes",
-    metaKey: "month",
-    eyebrow: "Monthly theme",
+    backLabel: "All workshop ideas",
+    metaKey: "theme",
+    eyebrow: "Workshop idea",
   },
   tutorials: {
     key: "tutorials",
@@ -34,24 +36,32 @@ export const indexPages = {
   },
   themes: {
     kind: "themes",
-    title: "Themes",
+    title: "Workshop ideas",
     eyebrow: "Themes",
-    heading: "Monthly inspiration",
-    lead: "Each month we share an optional theme. Use it as a spark, remix it, or ignore it entirely — your project, your pace.",
-    description: "Monthly theme pages for the Attleboro Public Library Hackathon.",
+    heading: "Future sessions",
+    lead: "Each meetup can follow an optional workshop idea. Pick a light or heavy track, choose one project, and ignore the rest — your project, your pace.",
+    description: "Workshop ideas for Attleboro Public Library Hackathon meetups.",
   },
   tutorials: {
     kind: "tutorials",
     title: "Tutorials",
     eyebrow: "Tutorials",
-    heading: "Learn at your own pace",
-    lead: "Short, friendly walkthroughs you can follow on library Wi‑Fi before or during a meetup. No special tools required beyond a browser and a text editor.",
-    description: "Tutorials for Attleboro Public Library Hackathon beginners and beyond.",
+    heading: "Languages and tools",
+    lead: "Curated starting points from the Hello-World repo: official docs, Learn X in Y Minutes, koans, and tutorials you can follow on library Wi‑Fi.",
+    description: "Language and tool landing pages for the Attleboro Public Library Hackathon.",
   },
 };
 
 let catalogPromise;
 const fragmentCache = new Map();
+
+function interpolateItem(item) {
+  const next = { ...item };
+  for (const [key, value] of Object.entries(next)) {
+    if (typeof value === "string") next[key] = applyConfigText(value);
+  }
+  return next;
+}
 
 export function loadCatalog() {
   if (!catalogPromise) {
@@ -60,6 +70,12 @@ export function loadCatalog() {
         throw new Error(`Failed to load content (${response.status})`);
       }
       return response.json();
+    }).then((json) => {
+      const catalog = {};
+      for (const [kind, items] of Object.entries(json)) {
+        catalog[kind] = Array.isArray(items) ? items.map(interpolateItem) : items;
+      }
+      return catalog;
     });
   }
   return catalogPromise;
@@ -73,7 +89,7 @@ export async function loadFragment(kind, slug) {
   if (!response.ok) {
     throw new Error(`Failed to load ${key} (${response.status})`);
   }
-  const html = await response.text();
+  const html = applyConfigText(await response.text());
   fragmentCache.set(key, html);
   return html;
 }
