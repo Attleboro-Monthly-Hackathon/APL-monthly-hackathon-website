@@ -90,10 +90,12 @@ class SiteFooter extends HTMLElement {
           </div>
           <div>
             <h2>Contact</h2>
-            <p><a href="mailto:${siteConfig.contactEmail}">${siteConfig.contactEmail}</a></p>
+            <p><a href="${siteConfig.phoneHref}">${siteConfig.phone}</a><br />
+            <a href="mailto:${siteConfig.contactEmail}">${siteConfig.contactEmail}</a><br />
+            <a href="${siteConfig.website}">${siteConfig.websiteLabel}</a></p>
           </div>
         </div>
-        <p class="site-footer__meta">A friendly monthly meetup for makers, learners, and the curious.</p>
+        <p class="site-footer__meta">A monthly makers’ meetup at the Attleboro Public Library.</p>
       </div>
     `;
   }

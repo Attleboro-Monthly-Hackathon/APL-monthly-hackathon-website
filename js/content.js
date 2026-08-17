@@ -30,7 +30,7 @@ export const indexPages = {
     eyebrow: "Articles",
     heading: "Notes from the library",
     lead: "Practical guides, welcome notes, and reflections from organizers and attendees. Want to contribute? Email the organizers with a draft.",
-    description: "Articles from the APL Hackathon community.",
+    description: "Articles from the Attleboro Public Library Hackathon community.",
   },
   themes: {
     kind: "themes",
@@ -38,7 +38,7 @@ export const indexPages = {
     eyebrow: "Themes",
     heading: "Monthly inspiration",
     lead: "Each month we share an optional theme. Use it as a spark, remix it, or ignore it entirely — your project, your pace.",
-    description: "Monthly theme pages for the APL Hackathon.",
+    description: "Monthly theme pages for the Attleboro Public Library Hackathon.",
   },
   tutorials: {
     kind: "tutorials",
@@ -46,7 +46,7 @@ export const indexPages = {
     eyebrow: "Tutorials",
     heading: "Learn at your own pace",
     lead: "Short, friendly walkthroughs you can follow on library Wi‑Fi before or during a meetup. No special tools required beyond a browser and a text editor.",
-    description: "Tutorials for APL Hackathon beginners and beyond.",
+    description: "Tutorials for Attleboro Public Library Hackathon beginners and beyond.",
   },
 };
 

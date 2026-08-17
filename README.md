@@ -1,6 +1,6 @@
 # APL Hackathon Website
 
-A static vanilla JavaScript single-page site for a monthly community hackathon hosted at a local public library.
+A static vanilla JavaScript single-page site for the monthly community hackathon at the Attleboro Public Library (74 North Main Street, Attleboro, MA).
 
 ## Features
 
@@ -14,7 +14,7 @@ A static vanilla JavaScript single-page site for a monthly community hackathon h
 From this project directory:
 
 ```bash
-python3 -m http.server 8080 --directory public
+python3 -m http.server 8080
 ```
 
 Then open [http://localhost:8080](http://localhost:8080).
@@ -28,14 +28,14 @@ Routes:
 
 ## Configuration
 
-Edit `public/js/config.js` for site name, library location, Google Calendar embed URL, and contact links.
+Edit `js/config.js` for site name, library location, Google Calendar embed URL, and contact links.
 
-Metadata lives in `public/data/content.json`. Body copy lives in `public/content/{articles|themes|tutorials}/{slug}.html`.
+Metadata lives in `data/content.json`. Body copy lives in `content/{articles|themes|tutorials}/{slug}.html`.
 
 ## Adding an article, theme, or tutorial
 
-1. Add an entry to `public/data/content.json` with a `slug`.
-2. Create a fragment at `public/content/<kind>/<slug>.html` with only the body markup:
+1. Add an entry to `data/content.json` with a `slug`.
+2. Create a fragment at `content/<kind>/<slug>.html` with only the body markup:
 
 ```html
 <p>Your article body goes here.</p>

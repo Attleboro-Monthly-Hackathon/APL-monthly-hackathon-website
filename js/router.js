@@ -10,7 +10,7 @@ import {
 } from "./content.js";
 
 const HOME_DESCRIPTION =
-  "A friendly monthly hackathon at the public library. Build, learn, and meet your neighbors.";
+  "A friendly monthly hackathon at the Attleboro Public Library. Build, learn, and meet your neighbors.";
 
 let renderGeneration = 0;
 
@@ -170,7 +170,7 @@ async function renderDoc(kind, slug) {
 
 function renderNotFound() {
   setPageTitle("Page not found");
-  setMetaDescription("That page is not in the APL Hackathon site.");
+  setMetaDescription("That page is not in the Attleboro Public Library Hackathon site.");
   mainEl().innerHTML = `
     <header class="page-hero wrap">
       <p class="section__eyebrow">404</p>

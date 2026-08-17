@@ -1,18 +1,22 @@
 /**
- * Site configuration — update these values for your library and calendar.
+ * Site configuration — Attleboro Public Library monthly hackathon.
  */
 export const siteConfig = {
   name: "APL Hackathon",
   shortName: "APL",
   tagline: "Build something small. Learn something new. Meet your neighbors.",
-  library: "Alder Public Library",
-  location: "Community Room · Main Floor",
-  address: "214 Oak Street",
-  schedule: "First Saturday of each month · 10:00 AM – 4:00 PM",
-  contactEmail: "hackathon@example.org",
+  library: "Attleboro Public Library",
+  location: "Meeting Room",
+  address: "74 North Main Street, Attleboro, MA 02703",
+  schedule: "First Saturday of each month, during Saturday hours",
+  phone: "508-222-0157",
+  phoneHref: "tel:+15082220157",
+  website: "https://attleborolibrary.org",
+  websiteLabel: "attleborolibrary.org",
+  contactEmail: "apl_ref@sailsinc.org",
   rsvpUrl: "#/calendar",
   /**
-   * Replace with your Google Calendar embed URL.
+   * Replace with the library Google Calendar embed URL.
    * Google Calendar → Settings → Integrate calendar → Embed code → src URL
    */
   googleCalendarEmbedUrl:
