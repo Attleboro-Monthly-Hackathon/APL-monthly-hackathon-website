@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>APL Hackathon</title>
+    <meta
+      name="description"
+      content="A friendly monthly hackathon at the public library. Build, learn, and meet your neighbors."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,480..700&family=Manrope:wght@400;560;650;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script type="module" src="js/site.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <site-header></site-header>
+    <main id="main" tabindex="-1"></main>
+    <site-footer></site-footer>
+
+    <template id="view-home">
+      <section class="hero" aria-label="Welcome">
+        <div class="hero__atmosphere" aria-hidden="true"></div>
+        <div class="hero__glow" aria-hidden="true"></div>
+        <div class="hero__content">
+          <h1 class="hero__brand"><span data-config="name">APL Hackathon</span></h1>
+          <p class="hero__headline">A monthly makers’ afternoon at the library</p>
+          <p class="hero__support" data-config="tagline">
+            Build something small. Learn something new. Meet your neighbors.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#/calendar">See the calendar</a>
+            <a class="btn btn--ghost" href="#/tutorials">Start with a tutorial</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section band" aria-labelledby="about-title">
+        <div class="wrap about-grid">
+          <div class="reveal">
+            <p class="section__eyebrow">About</p>
+            <h2 class="section__title" id="about-title">Come as you are</h2>
+            <p>
+              The APL Hackathon is a low-pressure monthly meetup for anyone curious about
+              making things with code, design, data, or hardware. Beginners are welcome.
+              So are seasoned builders who enjoy helping others get unstuck.
+            </p>
+            <p>
+              We meet in the library’s community room, share a theme for inspiration, and
+              spend the day working on personal or group projects. There are no prizes and
+              no pressure to finish — just a friendly place to learn in public.
+            </p>
+          </div>
+          <dl class="detail-list reveal">
+            <div>
+              <dt>Where</dt>
+              <dd>
+                <span data-config="library">Alder Public Library</span><br />
+                <span data-config="location">Community Room · Main Floor</span><br />
+                <span data-config="address">214 Oak Street</span>
+              </dd>
+            </div>
+            <div>
+              <dt>When</dt>
+              <dd data-config="schedule">First Saturday of each month · 10:00 AM – 4:00 PM</dd>
+            </div>
+            <div>
+              <dt>What to bring</dt>
+              <dd>A laptop if you have one, headphones, and a project idea — or just curiosity.</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section" id="calendar" aria-labelledby="calendar-title">
+        <div class="wrap">
+          <div class="reveal">
+            <p class="section__eyebrow">Schedule</p>
+            <h2 class="section__title" id="calendar-title">Upcoming dates</h2>
+            <p class="section__lead">
+              Browse the calendar for meetup days, theme announcements, and optional
+              workshops. Add events to your own calendar from the embed controls.
+            </p>
+          </div>
+          <site-calendar class="reveal"></site-calendar>
+        </div>
+      </section>
+
+      <section class="section band" aria-labelledby="explore-title">
+        <div class="wrap">
+          <div class="reveal">
+            <p class="section__eyebrow">Explore</p>
+            <h2 class="section__title" id="explore-title">Read, browse themes, learn</h2>
+            <p class="section__lead">
+              New here? Start with a short article or a beginner tutorial. Returning?
+              Check this month’s theme for inspiration.
+            </p>
+          </div>
+          <div class="preview-grid">
+            <div class="preview-block reveal">
+              <h3>Articles</h3>
+              <p>Stories, tips, and notes from organizers and attendees.</p>
+              <a class="btn btn--outline" href="#/articles">Browse articles</a>
+            </div>
+            <div class="preview-block reveal">
+              <h3>Monthly themes</h3>
+              <p>Optional prompts to spark projects — never required.</p>
+              <a class="btn btn--outline" href="#/themes">See themes</a>
+            </div>
+            <div class="preview-block reveal">
+              <h3>Tutorials</h3>
+              <p>Step-by-step guides for first projects and useful skills.</p>
+              <a class="btn btn--outline" href="#/tutorials">Start learning</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="latest-title">
+        <div class="wrap">
+          <div class="reveal">
+            <p class="section__eyebrow">Latest</p>
+            <h2 class="section__title" id="latest-title">From the community</h2>
+            <p class="section__lead">Recent articles and the current theme.</p>
+          </div>
+          <content-list class="reveal" kind="articles" limit="3"></content-list>
+          <p style="margin-top: 1.5rem">
+            <a class="btn btn--solid" href="#/themes">This month’s theme →</a>
+          </p>
+        </div>
+      </section>
+    </template>
+  </body>
+</html>

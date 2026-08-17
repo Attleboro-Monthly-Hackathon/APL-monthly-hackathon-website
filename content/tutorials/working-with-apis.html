@@ -1,0 +1,27 @@
+<p>
+  An API is a way for your webpage to ask another service for data — weather,
+  library catalogs, open datasets, and more.
+</p>
+
+<h2>A tiny example</h2>
+<p>
+  Many public APIs return JSON. In the browser you can request it with
+  <code>fetch</code>:
+</p>
+<pre><code>const response = await fetch("https://api.example.com/data");
+const data = await response.json();
+document.querySelector("#output").textContent = data.message;</code></pre>
+
+<h2>Good beginner APIs</h2>
+<ul>
+  <li>Open-Meteo for weather (no key required)</li>
+  <li>Open Library for book metadata</li>
+  <li>Local open data portals for civic datasets</li>
+</ul>
+
+<h2>Tips for the library Wi‑Fi</h2>
+<ul>
+  <li>Prefer APIs that do not require secret keys in frontend code.</li>
+  <li>Handle errors kindly — show a friendly message if the request fails.</li>
+  <li>Ask an organizer before calling rate-limited services in a loop.</li>
+</ul>
