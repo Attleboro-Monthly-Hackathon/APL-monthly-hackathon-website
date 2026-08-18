@@ -1,0 +1,47 @@
+<p><strong>Theme:</strong> The power of scripts</p>
+
+<hr />
+
+<h2>Light experience</h2>
+
+<p>Write a short script that does one repetitive job reliably. Prefer local files or one free API over complex infrastructure.</p>
+
+<h3>Project ideas</h3>
+
+<ol><li><strong>Bulk file rename</strong> — Rename a messy photo folder with dates, counters, or a consistent pattern (<code>vacation_001.jpg</code>).</li><li><strong>Downloads folder sorter</strong> — Move files into <code>Images/</code>, <code>PDFs/</code>, <code>Videos/</code> by extension.</li><li><strong>Daily weather text / email</strong> — Call a weather API once a day and send a short summary (SMS via Twilio trial, or email via SMTP).</li><li><strong>Clipboard / note helper</strong> — Append timestamped notes to a daily log file from the command line.</li><li><strong>Duplicate finder</strong> — List or quarantine duplicate files by size + hash.</li></ol>
+
+<h3>Learning goals</h3>
+
+<ul><li>Reading command-line arguments and paths</li><li>Working with files and folders safely (dry-run mode first!)</li><li>Calling a simple HTTP API and parsing JSON</li></ul>
+
+<h3>Resources</h3>
+
+<div class="table-wrap"><table class="resource-table"><thead><tr><th>Kind</th><th>Link</th></tr></thead><tbody><tr><td>Wikipedia — Scripting language</td><td><a href="https://en.wikipedia.org/wiki/Scripting_language" rel="noopener noreferrer" target="_blank">https://en.wikipedia.org/wiki/Scripting_language</a></td></tr><tr><td>Wikipedia — Cron</td><td><a href="https://en.wikipedia.org/wiki/Cron" rel="noopener noreferrer" target="_blank">https://en.wikipedia.org/wiki/Cron</a></td></tr><tr><td>Wikipedia — Hash function (for duplicates)</td><td><a href="https://en.wikipedia.org/wiki/Hash_function" rel="noopener noreferrer" target="_blank">https://en.wikipedia.org/wiki/Hash_function</a></td></tr><tr><td>Python <code>pathlib</code></td><td><a href="https://docs.python.org/3/library/pathlib.html" rel="noopener noreferrer" target="_blank">https://docs.python.org/3/library/pathlib.html</a></td></tr><tr><td>Python <code>argparse</code></td><td><a href="https://docs.python.org/3/library/argparse.html" rel="noopener noreferrer" target="_blank">https://docs.python.org/3/library/argparse.html</a></td></tr><tr><td>Python <code>requests</code></td><td><a href="https://requests.readthedocs.io/en/latest/" rel="noopener noreferrer" target="_blank">https://requests.readthedocs.io/en/latest/</a></td></tr><tr><td>OpenWeatherMap API</td><td><a href="https://openweathermap.org/api" rel="noopener noreferrer" target="_blank">https://openweathermap.org/api</a></td></tr><tr><td>wttr.in (weather in the terminal)</td><td><a href="https://github.com/chubin/wttr.in" rel="noopener noreferrer" target="_blank">https://github.com/chubin/wttr.in</a></td></tr><tr><td>Twilio SMS quickstart</td><td><a href="https://www.twilio.com/docs/sms/quickstart" rel="noopener noreferrer" target="_blank">https://www.twilio.com/docs/sms/quickstart</a></td></tr><tr><td>Schedule with cron (Ubuntu docs)</td><td><a href="https://help.ubuntu.com/community/CronHowto" rel="noopener noreferrer" target="_blank">https://help.ubuntu.com/community/CronHowto</a></td></tr></tbody></table></div>
+
+<hr />
+
+<h2>Heavy experience</h2>
+
+<p>Build an automation that watches something in the real world and notifies you—or that classifies and organizes content with a bit of ML or smarter rules.</p>
+
+<h3>Project ideas</h3>
+
+<ol><li><strong>Library book availability bot</strong> — Scrape or poll the catalog for a hold/wishlist title; notify via Discord when it’s available again.</li><li><strong>Smart downloads sorter</strong> — Use filename/extension rules plus optional text classification (or keyword ML) to file documents into topic folders.</li><li><strong>Price / product watcher</strong> — Check a public product page on a schedule; alert when price drops below a threshold.</li><li><strong>Inbox / RSS digester</strong> — Fetch RSS feeds, summarize new items, post a daily digest to Discord or email.</li><li><strong>Backup & report</strong> — Zip important folders nightly and write a short status report (size, file count, last run).</li></ol>
+
+<h3>Learning goals</h3>
+
+<ul><li>Scheduling (cron, Task Scheduler, or a simple loop)</li><li>Parsing HTML carefully (respect robots.txt; prefer official APIs when they exist)</li><li>Webhooks and bot tokens (Discord)</li><li>Basic classification or rule engines</li></ul>
+
+<h3>Resources</h3>
+
+<div class="table-wrap"><table class="resource-table"><thead><tr><th>Kind</th><th>Link</th></tr></thead><tbody><tr><td>Wikipedia — Web scraping</td><td><a href="https://en.wikipedia.org/wiki/Web_scraping" rel="noopener noreferrer" target="_blank">https://en.wikipedia.org/wiki/Web_scraping</a></td></tr><tr><td>Wikipedia — Webhook</td><td><a href="https://en.wikipedia.org/wiki/Webhook" rel="noopener noreferrer" target="_blank">https://en.wikipedia.org/wiki/Webhook</a></td></tr><tr><td>Wikipedia — Machine learning</td><td><a href="https://en.wikipedia.org/wiki/Machine_learning" rel="noopener noreferrer" target="_blank">https://en.wikipedia.org/wiki/Machine_learning</a></td></tr><tr><td>Beautiful Soup docs</td><td><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/" rel="noopener noreferrer" target="_blank">https://www.crummy.com/software/BeautifulSoup/bs4/doc/</a></td></tr><tr><td>Scrapy (heavier scraping)</td><td><a href="https://docs.scrapy.org/" rel="noopener noreferrer" target="_blank">https://docs.scrapy.org/</a></td></tr><tr><td>Discord webhooks intro</td><td><a href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks" rel="noopener noreferrer" target="_blank">https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks</a></td></tr><tr><td>Discord developer docs</td><td><a href="https://discord.com/developers/docs/intro" rel="noopener noreferrer" target="_blank">https://discord.com/developers/docs/intro</a></td></tr><tr><td>feedparser (RSS in Python)</td><td><a href="https://feedparser.readthedocs.io/" rel="noopener noreferrer" target="_blank">https://feedparser.readthedocs.io/</a></td></tr><tr><td>scikit-learn text tutorial</td><td><a href="https://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html" rel="noopener noreferrer" target="_blank">https://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html</a></td></tr><tr><td>robots.txt specification</td><td><a href="https://developers.google.com/search/docs/crawling-indexing/robots/intro" rel="noopener noreferrer" target="_blank">https://developers.google.com/search/docs/crawling-indexing/robots/intro</a></td></tr></tbody></table></div>
+
+<hr />
+
+<h2>Safety & etiquette</h2>
+
+<ul><li>Prefer official APIs over scraping when available.</li><li>Rate-limit requests; don’t hammer library or store websites.</li><li>Never commit API keys or Discord tokens—use environment variables.</li><li>Start every file script with a <strong>dry-run</strong> that only prints what it <em>would</em> do.</li></ul>
+
+<h3>Suggested session flow</h3>
+
+<ol><li>Pick one annoying personal task.</li><li>Automate the happy path only; handle errors second.</li><li>Add a dry-run or <code>--help</code> flag.</li><li>Demo: before/after of the messy folder or the notification popping up.</li></ol>

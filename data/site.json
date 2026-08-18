@@ -1,0 +1,112 @@
+{
+  "name": "APL Hackathon",
+  "shortName": "APL",
+  "tagline": "Build something small. Learn something new. Meet your neighbors.",
+  "library": "Attleboro Public Library",
+  "location": "2nd floor tech lab",
+  "address": "74 North Main Street, Attleboro, MA 02703",
+  "meetupDay": "Monday",
+  "schedule": "First Monday of each month, unless otherwise noted",
+  "phone": "508-222-0157",
+  "phoneHref": "tel:+15082220157",
+  "website": "https://attleborolibrary.org",
+  "websiteLabel": "attleborolibrary.org",
+  "contactEmail": "apl_ref@sailsinc.org",
+  "rsvpUrl": "#/calendar",
+  "googleCalendarEmbedUrl": "https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America%2FNew_York&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0",
+  "nav": [
+    { "href": "#/", "label": "Home", "match": "exact", "route": "/" },
+    { "href": "#/calendar", "label": "Calendar", "match": "exact", "route": "/calendar" },
+    { "href": "#/articles", "label": "Articles", "match": "prefix", "route": "/articles" },
+    { "href": "#/themes", "label": "Themes", "match": "prefix", "route": "/themes" },
+    { "href": "#/tutorials", "label": "Tutorials", "match": "prefix", "route": "/tutorials" }
+  ],
+  "collections": {
+    "articles": {
+      "key": "articles",
+      "label": "Articles",
+      "path": "#/articles",
+      "backLabel": "All articles",
+      "metaKey": "date",
+      "wrapClass": "wrap wrap--narrow"
+    },
+    "themes": {
+      "key": "themes",
+      "label": "Themes",
+      "path": "#/themes",
+      "backLabel": "All workshop ideas",
+      "metaKey": "theme",
+      "eyebrow": "Workshop idea",
+      "wrapClass": "wrap"
+    },
+    "tutorials": {
+      "key": "tutorials",
+      "label": "Tutorials",
+      "path": "#/tutorials",
+      "backLabel": "All tutorials",
+      "metaKey": "level",
+      "wrapClass": "wrap"
+    }
+  },
+  "pages": {
+    "home": {
+      "description": "A friendly monthly hackathon at the Attleboro Public Library. Build, learn, and meet your neighbors.",
+      "calendarTitle": "Calendar"
+    },
+    "notFound": {
+      "title": "Page not found",
+      "description": "That page is not in the Attleboro Public Library Hackathon site."
+    },
+    "articles": {
+      "kind": "articles",
+      "title": "Articles",
+      "eyebrow": "Articles",
+      "heading": "Notes from the library",
+      "lead": "Practical guides, welcome notes, and reflections from organizers and attendees. Want to contribute? Email the organizers with a draft.",
+      "description": "Articles from the Attleboro Public Library Hackathon community."
+    },
+    "themes": {
+      "kind": "themes",
+      "title": "Workshop ideas",
+      "eyebrow": "Themes",
+      "heading": "Future sessions",
+      "lead": "Each meetup can follow an optional workshop idea. Pick a light or heavy track, choose one project, and ignore the rest — your project, your pace.",
+      "description": "Workshop ideas for Attleboro Public Library Hackathon meetups."
+    },
+    "tutorials": {
+      "kind": "tutorials",
+      "title": "Tutorials",
+      "eyebrow": "Tutorials",
+      "heading": "Languages and tools",
+      "lead": "Curated starting points from the Hello-World repo: official docs, Learn X in Y Minutes, koans, and tutorials you can follow on library Wi‑Fi.",
+      "description": "Language and tool landing pages for the Attleboro Public Library Hackathon."
+    }
+  },
+  "chrome": {
+    "skipLink": "Skip to content",
+    "brandSuffix": "Hackathon",
+    "menuLabel": "Menu",
+    "navAriaLabel": "Primary",
+    "whenHeading": "When",
+    "exploreHeading": "Explore",
+    "contactHeading": "Contact",
+    "footerMeta": "A monthly makers’ meetup at the Attleboro Public Library.",
+    "calendarTitle": "{name} calendar",
+    "calendarNote": "Calendar embed is configured in <code>data/site.json</code>. Replace the placeholder URL with your library’s Google Calendar embed link.",
+    "listArrow": "→",
+    "backPrefix": "← ",
+    "explore": [
+      { "href": "#/articles", "label": "Articles" },
+      { "href": "#/themes", "label": "Workshop ideas" },
+      { "href": "#/tutorials", "label": "Tutorials" },
+      { "href": "#/calendar", "label": "Calendar" }
+    ]
+  },
+  "ui": {
+    "loading": "Loading…",
+    "loadError": "Unable to load this page right now.",
+    "emptyUnknown": "Unknown content type.",
+    "emptySoon": "Content coming soon.",
+    "emptyLoadFail": "Unable to load content right now."
+  }
+}

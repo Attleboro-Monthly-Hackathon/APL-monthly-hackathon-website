@@ -1,0 +1,47 @@
+<p><strong>Theme:</strong> Connecting to the internet</p>
+
+<hr />
+
+<h2>Light experience</h2>
+
+<p>Call one public API and present the result on a clean, styled page or in the terminal. Focus on request → JSON → display.</p>
+
+<h3>Project ideas</h3>
+
+<ol><li><strong>Random joke or quote page</strong> — Fetch on load or button click; nice typography and a “new one” button.</li><li><strong>Dog / cat image browser</strong> — Random animal photo plus breed info if the API provides it.</li><li><strong>Trivia round</strong> — Multiple-choice question from Open Trivia DB; keep score for 5 questions.</li><li><strong>Word of the day</strong> — Dictionary or dictionary-style API; show definition, part of speech, example sentence.</li><li><strong>Activity suggester</strong> — Bored API (or similar) + local styling: “I’m bored” → suggestion card.</li></ol>
+
+<h3>Learning goals</h3>
+
+<ul><li>HTTP <code>GET</code>, status codes, and JSON</li><li><code>fetch</code> in the browser or <code>requests</code> in Python</li><li>Rendering API data into HTML safely (avoid injecting raw HTML from strangers)</li><li>CORS basics (and when a tiny proxy helps)</li></ul>
+
+<h3>Resources</h3>
+
+<div class="table-wrap"><table class="resource-table"><thead><tr><th>Kind</th><th>Link</th></tr></thead><tbody><tr><td>Wikipedia — API</td><td><a href="https://en.wikipedia.org/wiki/API" rel="noopener noreferrer" target="_blank">https://en.wikipedia.org/wiki/API</a></td></tr><tr><td>Wikipedia — JSON</td><td><a href="https://en.wikipedia.org/wiki/JSON" rel="noopener noreferrer" target="_blank">https://en.wikipedia.org/wiki/JSON</a></td></tr><tr><td>Wikipedia — REST</td><td><a href="https://en.wikipedia.org/wiki/REST" rel="noopener noreferrer" target="_blank">https://en.wikipedia.org/wiki/REST</a></td></tr><tr><td>MDN — Using <code>fetch</code></td><td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" rel="noopener noreferrer" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch</a></td></tr><tr><td>MDN — Working with JSON</td><td><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON" rel="noopener noreferrer" target="_blank">https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON</a></td></tr><tr><td>Official Joke API</td><td><a href="https://official-joke-api.appspot.com/" rel="noopener noreferrer" target="_blank">https://official-joke-api.appspot.com/</a></td></tr><tr><td>Quotable (quotes API)</td><td><a href="https://github.com/lukePeavey/quotable" rel="noopener noreferrer" target="_blank">https://github.com/lukePeavey/quotable</a></td></tr><tr><td>Dog CEO API</td><td><a href="https://dog.ceo/dog-api/" rel="noopener noreferrer" target="_blank">https://dog.ceo/dog-api/</a></td></tr><tr><td>The Cat API</td><td><a href="https://thecatapi.com/" rel="noopener noreferrer" target="_blank">https://thecatapi.com/</a></td></tr><tr><td>Open Trivia DB</td><td><a href="https://opentdb.com/api_config.php" rel="noopener noreferrer" target="_blank">https://opentdb.com/api_config.php</a></td></tr><tr><td>Dictionary API (Free Dictionary)</td><td><a href="https://dictionaryapi.dev/" rel="noopener noreferrer" target="_blank">https://dictionaryapi.dev/</a></td></tr><tr><td>Public APIs list</td><td><a href="https://github.com/public-apis/public-apis" rel="noopener noreferrer" target="_blank">https://github.com/public-apis/public-apis</a></td></tr></tbody></table></div>
+
+<hr />
+
+<h2>Heavy experience</h2>
+
+<p>Combine <strong>two unrelated APIs</strong> into one coherent product. The “mashup” should be obvious in the UI: data from A changes what you show or play from B.</p>
+
+<h3>Project ideas</h3>
+
+<ol><li><strong>ISS soundtrack</strong> — Track the International Space Station’s position; map lat/lon to a country/region; play a track or preview associated with that place (e.g. music API + geocoding).</li><li><strong>Weather → playlist / color theme</strong> — Current weather changes page colors and suggests an activity or song mood.</li><li><strong>News + maps</strong> — Headlines from a news API plotted near related locations (when geo data exists) or filtered by user-chosen topic.</li><li><strong>Space + Earth</strong> — Astronomy Picture of the Day next to local sunrise/sunset or moon phase for the user’s city.</li><li><strong>Translate + trivia</strong> — Pull a trivia question and offer a translation of the question text into another language via a translation API.</li></ol>
+
+<h3>Learning goals</h3>
+
+<ul><li>Sequencing async calls (wait for A, then call B)</li><li>Geocoding and reverse geocoding</li><li>API keys, env vars, and rate limits</li><li>Designing a UI around <em>combined</em> meaning, not two dump dumps of JSON</li></ul>
+
+<h3>Resources</h3>
+
+<div class="table-wrap"><table class="resource-table"><thead><tr><th>Kind</th><th>Link</th></tr></thead><tbody><tr><td>Wikipedia — Mashup (web application hybrid)</td><td><a href="https://en.wikipedia.org/wiki/Mashup_(web_application_hybrid)" rel="noopener noreferrer" target="_blank">https://en.wikipedia.org/wiki/Mashup_(web_application_hybrid)</a></td></tr><tr><td>Wikipedia — International Space Station</td><td><a href="https://en.wikipedia.org/wiki/International_Space_Station" rel="noopener noreferrer" target="_blank">https://en.wikipedia.org/wiki/International_Space_Station</a></td></tr><tr><td>Wikipedia — Geocoding</td><td><a href="https://en.wikipedia.org/wiki/Geocoding" rel="noopener noreferrer" target="_blank">https://en.wikipedia.org/wiki/Geocoding</a></td></tr><tr><td>Open Notify — ISS Now</td><td><a href="http://open-notify.org/Open-Notify-API/ISS-Location-Now/" rel="noopener noreferrer" target="_blank">http://open-notify.org/Open-Notify-API/ISS-Location-Now/</a></td></tr><tr><td>Where the ISS at? (community APIs/tools)</td><td><a href="https://wheretheiss.at/w/developer" rel="noopener noreferrer" target="_blank">https://wheretheiss.at/w/developer</a></td></tr><tr><td>NASA Open APIs</td><td><a href="https://api.nasa.gov/" rel="noopener noreferrer" target="_blank">https://api.nasa.gov/</a></td></tr><tr><td>NASA APOD API</td><td><a href="https://github.com/nasa/apod-api" rel="noopener noreferrer" target="_blank">https://github.com/nasa/apod-api</a></td></tr><tr><td>OpenWeatherMap API</td><td><a href="https://openweathermap.org/api" rel="noopener noreferrer" target="_blank">https://openweathermap.org/api</a></td></tr><tr><td>Sunrise-Sunset API</td><td><a href="https://sunrise-sunset.org/api" rel="noopener noreferrer" target="_blank">https://sunrise-sunset.org/api</a></td></tr><tr><td>Spotify Web API</td><td><a href="https://developer.spotify.com/documentation/web-api" rel="noopener noreferrer" target="_blank">https://developer.spotify.com/documentation/web-api</a></td></tr><tr><td>Deezer API</td><td><a href="https://developers.deezer.com/api" rel="noopener noreferrer" target="_blank">https://developers.deezer.com/api</a></td></tr><tr><td>OpenStreetMap Nominatim (geocoding)</td><td><a href="https://nominatim.org/release-docs/latest/api/Overview/" rel="noopener noreferrer" target="_blank">https://nominatim.org/release-docs/latest/api/Overview/</a></td></tr><tr><td>NewsAPI</td><td><a href="https://newsapi.org/docs" rel="noopener noreferrer" target="_blank">https://newsapi.org/docs</a></td></tr><tr><td>Open-Meteo (no key weather)</td><td><a href="https://open-meteo.com/en/docs" rel="noopener noreferrer" target="_blank">https://open-meteo.com/en/docs</a></td></tr></tbody></table></div>
+
+<hr />
+
+<h2>Mashup design checklist</h2>
+
+<ol><li>What does API A tell you?</li><li>What decision does that enable for API B?</li><li>What does the user see in one glance?</li><li>What happens when an API is down or rate-limits you?</li></ol>
+
+<h3>Suggested session flow</h3>
+
+<ol><li>Light: one API working end-to-end before any styling.</li><li>Heavy: get both APIs returning data separately, <em>then</em> wire them together.</li><li>Cache or hardcode a sample JSON response so you can keep coding offline.</li><li>Demo the mashup idea in one sentence before showing the screen.</li></ol>

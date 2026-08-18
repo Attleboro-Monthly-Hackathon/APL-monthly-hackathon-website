@@ -1,0 +1,25 @@
+<div class="site-footer__inner">
+  <div class="site-footer__grid">
+    <div>
+      <h2>{name}</h2>
+      <p>{library}<br />{location}<br />{address}</p>
+    </div>
+    <div>
+      <h2>{whenHeading}</h2>
+      <p>{schedule}</p>
+    </div>
+    <div>
+      <h2>{exploreHeading}</h2>
+      <ul data-slot="explore"></ul>
+    </div>
+    <div>
+      <h2>{contactHeading}</h2>
+      <p>
+        <a href="{phoneHref}">{phone}</a><br />
+        <a href="mailto:{contactEmail}">{contactEmail}</a><br />
+        <a href="{website}">{websiteLabel}</a>
+      </p>
+    </div>
+  </div>
+  <p class="site-footer__meta">{footerMeta}</p>
+</div>
