@@ -4,7 +4,7 @@ A static vanilla JavaScript single-page site for the monthly community hackathon
 
 ## Features
 
-- One HTML document: styles and chrome stay loaded, so navigation has no flash of unstyled content
+- One HTML shell: styles and chrome stay loaded, so navigation has no flash of unstyled content
 - Hash routes inject home, listings, and article bodies into `<main>`
 - Reserved Google Calendar embed
 - Articles, workshop ideas (future sessions), and language tutorials from Hello-World
@@ -27,11 +27,20 @@ Routes:
 - `#/themes/games-from-scratch` workshop idea
 - `#/tutorials/html` language tutorial
 
-## Configuration
+## Content vs logic
 
-Edit `js/config.js` for site name, room (`location`), meetup day (`meetupDay` / `schedule`), Google Calendar embed URL, and contact links. Catalog strings can use `{location}`, `{meetupDay}`, and `{schedule}`; HTML can use `data-config="location"` (and the other keys) so copy stays in one place.
+Copy and markup live outside `js/`. The JavaScript modules load those files and wire behavior.
 
-Metadata lives in `data/content.json`. Body copy lives in `content/{articles|themes|tutorials}/{slug}.html`.
+| Location | What belongs there |
+| --- | --- |
+| `data/site.json` | Library identity, meetup day, nav, collections, listing page copy, chrome labels, UI strings, calendar embed URL |
+| `data/content.json` | Catalog metadata for articles, workshop ideas, and tutorials |
+| `content/pages/` | Home, 404, listing, and document shells |
+| `content/chrome/` | Header, footer, calendar, and list-item markup |
+| `content/{articles\|themes\|tutorials}/` | Body copy for each catalog item |
+| `js/` | Routing, data loading, interpolation, and web components |
+
+Catalog strings can use `{location}`, `{meetupDay}`, and `{schedule}`. HTML can use the same placeholders or `data-config="location"` (and the other keys).
 
 ## Adding an article, theme, or tutorial
 
@@ -44,4 +53,4 @@ Metadata lives in `data/content.json`. Body copy lives in `content/{articles|the
 <p>More copy.</p>
 ```
 
-The SPA loads that fragment into the current page and supplies the header, footer, title, and hero from the catalog.
+The SPA loads that fragment into the document shell and supplies the header, footer, title, and hero from the catalog.

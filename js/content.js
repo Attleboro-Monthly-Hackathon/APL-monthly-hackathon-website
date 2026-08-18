@@ -1,59 +1,7 @@
 import { applyConfigText } from "./config.js";
 
-export const collections = {
-  articles: {
-    key: "articles",
-    label: "Articles",
-    path: "#/articles",
-    backLabel: "All articles",
-    metaKey: "date",
-  },
-  themes: {
-    key: "themes",
-    label: "Themes",
-    path: "#/themes",
-    backLabel: "All workshop ideas",
-    metaKey: "theme",
-    eyebrow: "Workshop idea",
-  },
-  tutorials: {
-    key: "tutorials",
-    label: "Tutorials",
-    path: "#/tutorials",
-    backLabel: "All tutorials",
-    metaKey: "level",
-  },
-};
-
-export const indexPages = {
-  articles: {
-    kind: "articles",
-    title: "Articles",
-    eyebrow: "Articles",
-    heading: "Notes from the library",
-    lead: "Practical guides, welcome notes, and reflections from organizers and attendees. Want to contribute? Email the organizers with a draft.",
-    description: "Articles from the Attleboro Public Library Hackathon community.",
-  },
-  themes: {
-    kind: "themes",
-    title: "Workshop ideas",
-    eyebrow: "Themes",
-    heading: "Future sessions",
-    lead: "Each meetup can follow an optional workshop idea. Pick a light or heavy track, choose one project, and ignore the rest — your project, your pace.",
-    description: "Workshop ideas for Attleboro Public Library Hackathon meetups.",
-  },
-  tutorials: {
-    kind: "tutorials",
-    title: "Tutorials",
-    eyebrow: "Tutorials",
-    heading: "Languages and tools",
-    lead: "Curated starting points from the Hello-World repo: official docs, Learn X in Y Minutes, koans, and tutorials you can follow on library Wi‑Fi.",
-    description: "Language and tool landing pages for the Attleboro Public Library Hackathon.",
-  },
-};
-
+const htmlCache = new Map();
 let catalogPromise;
-const fragmentCache = new Map();
 
 function interpolateItem(item) {
   const next = { ...item };
@@ -65,33 +13,47 @@ function interpolateItem(item) {
 
 export function loadCatalog() {
   if (!catalogPromise) {
-    catalogPromise = fetch(new URL("../data/content.json", import.meta.url)).then((response) => {
-      if (!response.ok) {
-        throw new Error(`Failed to load content (${response.status})`);
-      }
-      return response.json();
-    }).then((json) => {
-      const catalog = {};
-      for (const [kind, items] of Object.entries(json)) {
-        catalog[kind] = Array.isArray(items) ? items.map(interpolateItem) : items;
-      }
-      return catalog;
-    });
+    catalogPromise = fetch(new URL("../data/content.json", import.meta.url))
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Failed to load content (${response.status})`);
+        }
+        return response.json();
+      })
+      .then((json) => {
+        const catalog = {};
+        for (const [kind, items] of Object.entries(json)) {
+          catalog[kind] = Array.isArray(items) ? items.map(interpolateItem) : items;
+        }
+        return catalog;
+      });
   }
   return catalogPromise;
 }
 
-export async function loadFragment(kind, slug) {
-  const key = `${kind}/${slug}`;
-  if (fragmentCache.has(key)) return fragmentCache.get(key);
+export async function loadContent(relativePath) {
+  if (htmlCache.has(relativePath)) return htmlCache.get(relativePath);
 
-  const response = await fetch(new URL(`../content/${kind}/${slug}.html`, import.meta.url));
+  const response = await fetch(new URL(`../content/${relativePath}`, import.meta.url));
   if (!response.ok) {
-    throw new Error(`Failed to load ${key} (${response.status})`);
+    throw new Error(`Failed to load ${relativePath} (${response.status})`);
   }
+
   const html = applyConfigText(await response.text());
-  fragmentCache.set(key, html);
+  htmlCache.set(relativePath, html);
   return html;
+}
+
+export function loadPage(name) {
+  return loadContent(`pages/${name}.html`);
+}
+
+export function loadChrome(name) {
+  return loadContent(`chrome/${name}.html`);
+}
+
+export function loadFragment(kind, slug) {
+  return loadContent(`${kind}/${slug}.html`);
 }
 
 export function formatDate(iso) {

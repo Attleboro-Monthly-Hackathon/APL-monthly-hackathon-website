@@ -1,4 +1,5 @@
-import "./components.js";
+import { bindConfig, loadSite } from "./config.js";
+import { loadChrome, loadPage } from "./content.js";
 import { absorbLegacyPath, interceptNavigation, renderRoute } from "./router.js";
 
 function observeReveals() {
@@ -26,6 +27,17 @@ function observeReveals() {
 }
 
 document.addEventListener("spa:navigated", observeReveals);
+
+await loadSite();
+bindConfig(document);
+await Promise.all([
+  loadChrome("header"),
+  loadChrome("footer"),
+  loadChrome("calendar"),
+  loadChrome("content-item"),
+  loadPage("home"),
+]);
+await import("./components/index.js");
 
 if (!absorbLegacyPath()) {
   interceptNavigation();

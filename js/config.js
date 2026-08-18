@@ -1,46 +1,106 @@
 /**
- * Site configuration — Attleboro Public Library monthly hackathon.
- *
- * Location, meetup day, and schedule are the source of truth for copy
- * across the SPA. Use {location}, {meetupDay}, and {schedule} in catalog
- * strings, or data-config="…" in HTML.
+ * Load site identity and chrome copy from data/site.json.
+ * HTML and catalog strings may use {location}, {meetupDay}, and other keys.
  */
-export const siteConfig = {
-  name: "APL Hackathon",
-  shortName: "APL",
-  tagline: "Build something small. Learn something new. Meet your neighbors.",
-  library: "Attleboro Public Library",
-  location: "2nd Floor Tech Lab",
-  address: "74 North Main Street, Attleboro, MA 02703",
-  meetupDay: "Monday",
-  schedule: "First Monday of each month, unless otherwise noted",
-  phone: "508-222-0157",
-  phoneHref: "tel:+15082220157",
-  website: "https://attleborolibrary.org",
-  websiteLabel: "attleborolibrary.org",
-  contactEmail: "apl_ref@sailsinc.org",
-  rsvpUrl: "#/calendar",
-  /**
-   * Replace with the library Google Calendar embed URL.
-   * Google Calendar → Settings → Integrate calendar → Embed code → src URL
-   */
-  googleCalendarEmbedUrl:
-    "https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America%2FNew_York&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0",
-};
+export const siteConfig = {};
 
+let siteData = null;
 const PLACEHOLDER = /\{(\w+)\}/g;
 
-export function applyConfigText(text) {
+function asText(value) {
+  return typeof value === "string" || typeof value === "number" ? String(value) : null;
+}
+
+function interpolateWith(text, bag) {
+  return text.replace(PLACEHOLDER, (match, key) => asText(bag[key]) ?? match);
+}
+
+function collectStringBag(value, bag) {
+  if (!value || typeof value !== "object") return;
+  if (Array.isArray(value)) {
+    value.forEach((item) => collectStringBag(item, bag));
+    return;
+  }
+  for (const [key, nested] of Object.entries(value)) {
+    if (typeof nested === "string") bag[key] = nested;
+    else collectStringBag(nested, bag);
+  }
+}
+
+function walkInterpolate(value, bag) {
+  if (typeof value === "string") return interpolateWith(value, bag);
+  if (Array.isArray(value)) return value.map((item) => walkInterpolate(item, bag));
+  if (value && typeof value === "object") {
+    const next = {};
+    for (const [key, nested] of Object.entries(value)) {
+      next[key] = walkInterpolate(nested, bag);
+    }
+    return next;
+  }
+  return value;
+}
+
+function flattenStrings(source) {
+  if (!source || typeof source !== "object") return;
+  for (const [key, value] of Object.entries(source)) {
+    if (typeof value === "string") siteConfig[key] = value;
+  }
+}
+
+export function getSite() {
+  if (!siteData) throw new Error("Site data has not been loaded yet.");
+  return siteData;
+}
+
+export function getCollections() {
+  return getSite().collections;
+}
+
+export function getPage(name) {
+  return getSite().pages?.[name] || null;
+}
+
+export function interpolate(text, extra = {}) {
   if (typeof text !== "string") return text;
-  return text.replace(PLACEHOLDER, (match, key) =>
-    Object.prototype.hasOwnProperty.call(siteConfig, key) ? siteConfig[key] : match
-  );
+  return interpolateWith(text, { ...siteConfig, ...extra });
+}
+
+export function applyConfigText(text) {
+  return interpolate(text);
 }
 
 export function bindConfig(root) {
   if (!root?.querySelectorAll) return;
   root.querySelectorAll("[data-config]").forEach((el) => {
     const key = el.getAttribute("data-config");
-    if (key && key in siteConfig) el.textContent = siteConfig[key];
+    const value = asText(siteConfig[key]);
+    if (value != null) el.textContent = value;
   });
+}
+
+export async function loadSite() {
+  if (siteData) return siteData;
+
+  const response = await fetch(new URL("../data/site.json", import.meta.url));
+  if (!response.ok) {
+    throw new Error(`Failed to load site data (${response.status})`);
+  }
+
+  const raw = await response.json();
+  const bag = {};
+  for (const [key, value] of Object.entries(raw)) {
+    if (typeof value === "string") bag[key] = value;
+  }
+  collectStringBag(raw.chrome, bag);
+  collectStringBag(raw.ui, bag);
+  siteData = walkInterpolate(raw, bag);
+
+  Object.keys(siteConfig).forEach((key) => {
+    delete siteConfig[key];
+  });
+  Object.assign(siteConfig, siteData);
+  flattenStrings(siteData.chrome);
+  flattenStrings(siteData.ui);
+
+  return siteData;
 }

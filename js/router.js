@@ -1,18 +1,27 @@
 import { setMetaDescription, setPageTitle } from "./assets.js";
-import { applyConfigText, bindConfig } from "./config.js";
+import { bindConfig, getCollections, getPage, interpolate, siteConfig } from "./config.js";
 import {
-  collections,
   findItem,
-  indexPages,
   itemEyebrow,
   loadCatalog,
   loadFragment,
+  loadPage,
 } from "./content.js";
-
-const HOME_DESCRIPTION =
-  "A friendly monthly hackathon at the Attleboro Public Library. Build, learn, and meet your neighbors.";
+import { fillSlot, pruneOptional } from "./dom.js";
 
 let renderGeneration = 0;
+
+function escapeRe(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function kindsPattern() {
+  return Object.keys(getCollections()).map(escapeRe).join("|");
+}
+
+function mainEl() {
+  return document.getElementById("main");
+}
 
 export function currentRoute() {
   const raw = window.location.hash.replace(/^#/, "");
@@ -24,7 +33,7 @@ export function parseRoute(route = currentRoute()) {
   if (route === "/" || route === "") return { name: "home" };
   if (route === "/calendar") return { name: "home", scroll: "calendar" };
 
-  const match = route.match(/^\/(articles|themes|tutorials)(?:\/([^/]+))?$/);
+  const match = route.match(new RegExp(`^/(${kindsPattern()})(?:/([^/]+))?$`));
   if (!match) return { name: "not-found" };
 
   const kind = match[1];
@@ -52,7 +61,7 @@ export function toHash(href) {
       return "#/";
     }
 
-    const match = path.match(/\/(articles|themes|tutorials)(?:\/([^/]+?)(?:\.html)?)?\/?$/);
+    const match = path.match(new RegExp(`/(${kindsPattern()})(?:/([^/]+?)(?:\\.html)?)?/?$`));
     if (match) {
       const slug = match[2] && match[2] !== "index" ? `/${match[2]}` : "";
       return `#/${match[1]}${slug}`;
@@ -75,106 +84,83 @@ export function navigate(hash, { replace = false } = {}) {
   renderRoute();
 }
 
-function mainEl() {
-  return document.getElementById("main");
-}
-
-function renderHome(scrollId) {
-  const template = document.getElementById("view-home");
-  const main = mainEl();
-  main.replaceChildren(template.content.cloneNode(true));
-  setPageTitle(scrollId === "calendar" ? "Calendar" : null);
-  setMetaDescription(HOME_DESCRIPTION);
+async function renderHome(scrollId) {
+  const page = getPage("home");
+  mainEl().innerHTML = await loadPage("home");
+  setPageTitle(scrollId === "calendar" ? page.calendarTitle : null);
+  setMetaDescription(page.description);
   return scrollId;
 }
 
-function renderIndex(kind) {
-  const copy = indexPages[kind];
+async function renderIndex(kind) {
+  const copy = getPage(kind);
   const main = mainEl();
-  if (!copy) {
-    renderNotFound();
+  if (!copy?.kind) {
+    await renderNotFound();
     return;
   }
   setPageTitle(copy.title);
   setMetaDescription(copy.description);
-  main.innerHTML = `
-    <header class="page-hero wrap">
-      <p class="section__eyebrow">${copy.eyebrow}</p>
-      <h1>${copy.heading}</h1>
-      <p>${copy.lead}</p>
-    </header>
-    <section class="section" style="padding-top: 0">
-      <div class="wrap">
-        <content-list kind="${copy.kind}"></content-list>
-      </div>
-    </section>
-  `;
+  main.innerHTML = interpolate(await loadPage("listing"), copy);
 }
 
 async function renderDoc(kind, slug) {
-  const collection = collections[kind];
+  const collection = getCollections()[kind];
   const main = mainEl();
   if (!collection) {
-    renderNotFound();
+    await renderNotFound();
     return;
   }
 
-  main.innerHTML = `<p class="empty-state wrap">Loading…</p>`;
+  main.innerHTML = `<p class="empty-state wrap">${siteConfig.loading}</p>`;
 
   const catalog = await loadCatalog();
   const item = findItem(catalog, kind, slug);
   if (!item) {
-    renderNotFound();
+    await renderNotFound();
     return;
   }
 
-  const body = await loadFragment(kind, slug);
-  const title =
-    collection.key === "themes" && item.theme ? `${item.title}` : item.title;
-  setPageTitle(title);
-  setMetaDescription(applyConfigText(item.summary));
+  const [body, shell, bannerTpl] = await Promise.all([
+    loadFragment(kind, slug),
+    loadPage("doc"),
+    loadPage("doc-banner"),
+  ]);
 
-  const eyebrow = itemEyebrow(item, collection);
-  const lede = applyConfigText(item.lede || item.summary);
-  const banner =
-    item.bannerTitle || item.bannerText
-      ? `
-        <div class="theme-banner">
-          ${item.theme ? `<p class="theme-banner__month">${item.theme}</p>` : ""}
-          ${item.bannerTitle ? `<h2>${item.bannerTitle}</h2>` : ""}
-          ${item.bannerText ? `<p>${item.bannerText}</p>` : ""}
-        </div>
-      `
+  setPageTitle(item.title);
+  setMetaDescription(item.summary);
+
+  main.innerHTML = interpolate(shell, {
+    wrapClass: collection.wrapClass || "wrap",
+    eyebrow: itemEyebrow(item, collection),
+    title: item.title,
+    lede: item.lede || item.summary || "",
+    backHref: collection.path,
+    backLabel: collection.backLabel,
+  });
+  pruneOptional(main);
+
+  const bannerHtml =
+    item.theme || item.bannerTitle || item.bannerText
+      ? interpolate(bannerTpl, {
+          theme: item.theme || "",
+          bannerTitle: item.bannerTitle || "",
+          bannerText: item.bannerText || "",
+        })
       : "";
-
-  const widthClass = collection.key === "articles" ? "wrap wrap--narrow" : "wrap";
-  main.innerHTML = `
-    <article class="${widthClass}">
-      <header class="page-hero">
-        ${eyebrow ? `<p class="section__eyebrow">${eyebrow}</p>` : ""}
-        <h1>${item.title}</h1>
-        ${lede ? `<p>${lede}</p>` : ""}
-      </header>
-      ${banner}
-      <div class="prose">${body}</div>
-      <p class="content-back"><a href="${collection.path}">← ${collection.backLabel}</a></p>
-    </article>
-  `;
+  const banner = fillSlot(main, "banner", bannerHtml);
+  if (banner) {
+    pruneOptional(banner);
+    if (!banner.textContent.trim()) banner.remove();
+  }
+  fillSlot(main, "body", body);
 }
 
-function renderNotFound() {
-  setPageTitle("Page not found");
-  setMetaDescription("That page is not in the Attleboro Public Library Hackathon site.");
-  mainEl().innerHTML = `
-    <header class="page-hero wrap">
-      <p class="section__eyebrow">404</p>
-      <h1>We could not find that page</h1>
-      <p>Try the home page, or browse articles, themes, and tutorials from the menu.</p>
-    </header>
-    <p class="wrap" style="padding-bottom: 4rem">
-      <a class="btn btn--solid" href="#/">Back to home</a>
-    </p>
-  `;
+async function renderNotFound() {
+  const page = getPage("notFound");
+  setPageTitle(page.title);
+  setMetaDescription(page.description);
+  mainEl().innerHTML = await loadPage("not-found");
 }
 
 export async function renderRoute() {
@@ -186,18 +172,18 @@ export async function renderRoute() {
   let scrollId = null;
   try {
     if (parsed.name === "home") {
-      scrollId = renderHome(parsed.scroll);
+      scrollId = await renderHome(parsed.scroll);
     } else if (parsed.name === "index") {
-      renderIndex(parsed.kind);
+      await renderIndex(parsed.kind);
     } else if (parsed.name === "doc") {
       await renderDoc(parsed.kind, parsed.slug);
     } else {
-      renderNotFound();
+      await renderNotFound();
     }
   } catch (error) {
     console.error(error);
     if (gen !== renderGeneration) return;
-    main.innerHTML = `<p class="empty-state wrap">Unable to load this page right now.</p>`;
+    main.innerHTML = `<p class="empty-state wrap">${siteConfig.loadError}</p>`;
   }
 
   if (gen !== renderGeneration) return;
@@ -218,7 +204,7 @@ export async function renderRoute() {
 
 export function absorbLegacyPath() {
   const path = window.location.pathname.replace(/\/index\.html$/, "/");
-  const match = path.match(/\/(articles|themes|tutorials)(?:\/([^/]+?)(?:\.html)?)?\/?$/);
+  const match = path.match(new RegExp(`/(${kindsPattern()})(?:/([^/]+?)(?:\\.html)?)?/?$`));
   if (!match) return false;
   const slug = match[2] && match[2] !== "index" ? `/${match[2]}` : "";
   window.location.replace(`${window.location.origin}/#/${match[1]}${slug}`);
